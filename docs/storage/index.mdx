@@ -1,0 +1,27 @@
+---
+name: storage
+---
+
+import { app } from '../utils/app';
+import { Provider } from '../../src/app';
+import { UseUrlExample } from './UseUrlExample';
+import { UseMetadataExample } from './UseMetadataExample';
+import { UseUploadExample } from './UseUploadExample';
+
+# useUrl
+
+<Provider app={app}>
+  <UseUrlExample/>
+</Provider>
+
+# useMetadata
+
+<Provider app={app}>
+  <UseMetadataExample/>
+</Provider>
+
+# useUpload
+
+<Provider app={app}>
+  <UseUploadExample/>
+</Provider>
