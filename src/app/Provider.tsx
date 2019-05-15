@@ -7,10 +7,6 @@ export interface ProviderProps {
   children: React.ReactNode;
 }
 
-export function Provider({app, children}: ProviderProps) {
-  return (
-    <Context.Provider value={app}>
-      {children}
-    </Context.Provider>
-  )
+export function Provider({app, children}: ProviderProps): JSX.Element {
+  return <Context.Provider value={app}>{children}</Context.Provider>;
 }

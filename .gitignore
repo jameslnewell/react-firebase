@@ -1,5 +1,11 @@
 .vscode
 .docz
-/dist
 node_modules
 yarn-error.log
+
+# generated files
+/types
+/app
+/auth
+/firestore
+/storage

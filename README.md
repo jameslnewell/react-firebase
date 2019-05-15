@@ -1,184 +1,182 @@
 # @jameslnewell/react-firebase
 
-> ⚠️ Warning: Hooks aren't stable yet so be careful using this library in production.
-
 React hooks for working with firebase.
 
 ## Installation
 
-```
+```bash
 yarn add @jameslnewell/react-firebase
 ```
 
 ## Usage
 
-`Navbar.tsx`
+`firebase.js` - initialise a firebase app
+
 ```jsx
-import * as React from 'react';
 import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import {useAuth} from '@jameslnewell/react-firebase/auth';
 
-const Navbar = () => {
-  const [user, {signInWithPopup, signOut}] = useAuth();
-
-  function handleSignInOrOut() {
-    if (user) {
-      signOut();
-    } else {
-      signInWithPopup(new firebase.auth.GoogleProvider());
-    }
-  }
-
-  return (
-    <nav>
-      {user && <b>{user.displayName}</b>}
-      <button onClick={handleSignInOrOut}>{user ? 'Sign out' : 'Sign in'}</button>
-    </nav>
-  )
-}
-```
-
-`SongCollection.tsx`
-```jsx
-import * as React from 'react';
-import {useCollection} from '@jameslnewell/react-firebase/firestore';
-
-const SongCollection = () => {
-  const input = useRef(null);
-  const [songs, {add}] = useCollection('songs');
-  return (
-    <>
-      <ul>
-        {songs.map(([id, song]) => (
-          <div key={id}>
-            {song.name}
-          </div>
-        ))}
-      </ul>
-      <input ref={input}/>
-      <button onClick={() => add(input.current.value)}>Add song</button>
-    </>
-  );
-}
-```
-
-`App.tsx`
-```jsx
-import * as React from 'react';
-import * as firebase from 'firebase/app';
-import {Provider} from '@jameslnewell/react-firebase/app';
-import {Navbar} from './Navbar';
-import {SongCollection} from './SongCollection';
-
-const app = firebase.initializeApp({
-  // app options
+export const app = firebase.initializeApp({
+  // firebase app options
 });
+```
+
+`App.jsx` - inject the firebase app into your root component
+
+```jsx
+import * as React from 'react';
+import {Provider} from '@jameslnewell/react-firebase/app';
+import {app} from './firebase';
+import {Navbar} from './Navbar';
+import {Albums} from './Albums';
 
 const App = () => (
   <Provider app={app}>
     <>
       <Navbar/>
-      <SongCollection>
+      <Albums>
     </>
   </Provider>
 );
+
+```
+
+`Navbar.jsx` - use of authentication hooks
+
+```jsx
+import * as React from 'react';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import {
+  useUser,
+  useSignInWithPopup,
+  useSignOut,
+} from '@jameslnewell/react-firebase/auth';
+
+const Navbar = () => {
+  const [, user] = useUser();
+  const [, , signIn] = useSignInWithPopup();
+  const [, , signOut] = useSignOut();
+
+  const handleSignInOrOut = () => {
+    if (user) {
+      signOut();
+    } else {
+      signIn(new firebase.auth.GoogleProvider());
+    }
+  };
+
+  return (
+    <nav>
+      {user && <b>{user.displayName}</b>}
+      <button onClick={handleSignInOrOut}>
+        {user ? 'Sign out' : 'Sign in'}
+      </button>
+    </nav>
+  );
+};
+```
+
+`Albums.jsx` - use of firestore hooks
+
+```jsx
+import * as React from 'react';
+import {
+  useCollection,
+  useCreateDocument,
+} from '@jameslnewell/react-firebase/firestore';
+
+const Albums = () => {
+  const input = useRef(null);
+  const [, albums] = useCollection('albums');
+  const [, , createAlbum] = useCreateDocument('albums');
+  const [, , deleteAlbum] = useDeleteDocument('albums');
+  return (
+    <>
+      <ul>
+        {albums.map(([id, album]) => (
+          <div key={id}>
+            {album.name}
+            <button onClick={() => deleteAlbum(id)}>❌</button>
+          </div>
+        ))}
+      </ul>
+      <input ref={input} />
+      <button onClick={() => createAlbum({name: input.current.value})}>
+        ➕
+      </button>
+    </>
+  );
+};
 ```
 
 ## API
 
-### auth
+### Auth
 
-#### `useAuth()`
+#### `useUser()`
 
-```
-const [user, meta] = useAuth();
-```
+Retrieve information about the currently authenticated user.
 
-Get information about the currently authenticated user.
+```js
+import {useUser} from '@jameslnewell/react-firebase/auth';
 
-##### Returns
-- `user` - A `firebase.User` or `undefined` if there  is no authenticated user.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
-  - `signInWithPopup` - A `function` that prompts the user to sign in.
-  - `signOut` - A `function` that signs the user out.
-
-### storage
-
-#### `useUrl(path: string)`
-
-```
-const [url, meta] = useUrl('user/xyz/profile.jpg');
+const [status, user, error] = useUser();
 ```
 
-Retrieve the url for a file.
+##### Returns:
 
-##### Returns
-- `url` - The url or `undefined` if the document url hasn't hasn't been returned yet.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
+- `status` - One of `authenticated`, `unauthenticated` or `errored`.
+- `user` - A `firebase.User` or `undefined` if there is no authenticated user.
+- `error` - An `Error` or `undefined`.
 
-#### `useMetadata(path: string)`
+// TODO: useSignInWithPopup
+// TODO: useSignOut
 
-```
-const [metadata, meta] = useMetadata('user/xyz/profile.jpg');
-```
-
-Retrieve the metadata for a file.
-
-##### Returns
-- `metadata` - The metadata or `undefined` if the document metadata hasn't hasn't been returned yet.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
-
-#### `useUpload(path: string)`
-
-```
-const {upload, canPause} = useUpload('user/xyz/profile.jpg');
-```
-
-Upload a file.
-
-##### Returns
-- `metadata` - The metadata or `undefined` if the document metadata hasn't hasn't been returned yet.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
-
-### firestore
+### Firestore
 
 #### `useCollection(path: string)`
 
-```
-const [songs, meta] = useCollection('songs');
-```
-
 Retrieve multiple documents within a collection.
 
-##### Returns
-- `songs` - An array of documents or `undefined` if the query hasn't returned any data yet.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
-  - `add` - A `function` that adds a new document to the collection.
+```js
+import {useCollection} from '@jameslnewell/react-firebase/firestore';
+
+const [status, albums, error] = useCollection('albums');
+```
+
+##### Returns:
+
+- `status` - One of `loading`, `loaded` or `errored`.
+- `albums` - An array of documents.
+- `error` - The error.
 
 #### `useDocument(path: string)`
 
-```
-const [song, meta] = useDocument('songs/abc-def');
+```js
+import {useDocument} from '@jameslnewell/react-firebase/firestore';
+
+const [status, album, error] = useDocument(
+  'albums/992486b6-80f2-4141-b8c5-573fc541af9b',
+);
 ```
 
-Retrieve a single document within a collection.
+##### Returns:
 
-##### Returns
-- `song` - A document or `undefined` if the document hasn't hasn't been returned yet.
-- `meta`
-  - `status` - One of `loading`, `loaded` or `errored`.
-  - `error` - The `Error`.
-  - `set` - A `function` that overwrites all of the values in a document.
-  - `updates` - A `function` that updates some of the values within a document.
-  - `delete` - A `function` that deletes the document.
+- `status` - One of `loading`, `loaded` or `errored`.
+- `album` - A document.
+- `error` - The error.
+
+// TODO: useCreateDocument
+// TODO: useUpdateDocument
+// TODO: useDeleteDocument
+
+### Storage
+
+// TODO: useUpload()
+
+```js
+const [status, error, upload, {pause, resume, cancel}] = useUpload();
+```
+
+// TODO: useURL()
+// TODO: useMeta()
