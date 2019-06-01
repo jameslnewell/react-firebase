@@ -7,10 +7,10 @@ type Status = 'loading' | 'loaded' | 'errored';
 type UseMetadataOutput = [
   firebase.storage.FullMetadata | undefined,
   {
-    status: Status
+    status: Status;
     error?: string;
   }
-]
+];
 
 interface State {
   error?: string;
@@ -32,20 +32,22 @@ export function useMetadata(path: string): UseMetadataOutput {
   const [state, setState] = useState<State>({});
 
   useEffect(() => {
-    
     // reset the state whenever app or path changes
     setState({});
 
     // fetch the data
-    app.storage().ref(path).getMetadata().then(
-      metadata => setState({metadata}),
-      error => setState({error}),
-    );
-
+    app
+      .storage()
+      .ref(path)
+      .getMetadata()
+      .then(metadata => setState({metadata}), error => setState({error}));
   }, [app, path]);
 
-  return [state.metadata, {
-    status: getStatus(state),
-    error: state.error
-  }];
+  return [
+    state.metadata,
+    {
+      status: getStatus(state),
+      error: state.error,
+    },
+  ];
 }

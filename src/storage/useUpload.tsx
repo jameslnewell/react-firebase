@@ -5,17 +5,25 @@ import {useApp} from '../app';
 
 type Snapshot = firebase.storage.UploadTaskSnapshot;
 
-export type UploadStatus = 'uploading' | 'paused' | 'uploaded' | 'canceled' | 'errored';
+export type UploadStatus =
+  | 'uploading'
+  | 'paused'
+  | 'uploaded'
+  | 'canceled'
+  | 'errored';
 
 interface UploadState {
   status?: UploadStatus;
   transferred?: number;
   total?: number;
   error?: Error;
-};
+}
 
 interface UploadMethods {
-  upload: (file: string|Blob, metadata?: firebase.storage.UploadMetadata) => void;
+  upload: (
+    file: string | Blob,
+    metadata?: firebase.storage.UploadMetadata,
+  ) => void;
   canPause: () => boolean;
   pause: () => void;
   canResume: () => boolean;
@@ -52,7 +60,7 @@ function updated(snapshot: Snapshot): UploadState {
       status,
       transferred: snapshot.bytesTransferred,
       total: snapshot.totalBytes,
-    }
+    };
   }
 }
 
@@ -61,7 +69,7 @@ function errored(snapshot: Snapshot, error: Error): UploadState {
   if (status === 'canceled' || status === 'errored') {
     return {
       status,
-      error
+      error,
     };
   } else {
     throw new Error('Invalid state');
@@ -71,15 +79,19 @@ function errored(snapshot: Snapshot, error: Error): UploadState {
 export function useUpload(path: string): Upload {
   const app = useApp();
   const [state, setState] = useState<UploadState>({status: undefined});
-  const [uploader, setUploader] = useState<firebase.storage.UploadTask | undefined>(undefined);
+  const [uploader, setUploader] = useState<
+    firebase.storage.UploadTask | undefined
+  >(undefined);
 
   const methods: UploadMethods = {
-
-    upload(file: string | File | Blob, metadata?: firebase.storage.UploadMetadata) {
+    upload(
+      file: string | File | Blob,
+      metadata?: firebase.storage.UploadMetadata,
+    ) {
       if (!app) {
         throw new Error('Firebase is not ready yet');
       }
-      
+
       // get the uploader
       const ref = app.storage().ref(path);
       let task: firebase.storage.UploadTask;
@@ -88,65 +100,63 @@ export function useUpload(path: string): Upload {
       } else {
         task = ref.put(file, metadata);
       }
-  
+
       setUploader(task);
       setState(updated(task.snapshot));
-  
+
       // observe changes in state
       task.on(firebase.storage.TaskEvent.STATE_CHANGED, {
         next: () => {
-      setState(updated(task.snapshot));
+          setState(updated(task.snapshot));
           setState(updated(task.snapshot));
         },
-        error: (error) => {
+        error: error => {
           setUploader(undefined);
           setState(errored(task.snapshot, error));
         },
         complete: () => {
           setUploader(undefined);
           setState(updated(task.snapshot));
-        }
+        },
       });
-  
     },
-  
+
     canPause(): boolean {
       return state.status === 'uploading';
     },
-    
+
     pause() {
       if (!uploader) {
         throw new Error('File upload is not in progress.');
       }
       uploader.pause();
     },
-  
+
     canResume(): boolean {
       return state.status === 'paused';
     },
-    
+
     resume() {
       if (!uploader) {
         throw new Error('File upload is not in progress.');
       }
       uploader.resume();
     },
-  
+
     canCancel(): boolean {
       return state.status === 'uploading';
     },
-  
+
     cancel() {
       if (!uploader) {
         throw new Error('File upload is not in progress.');
       }
       uploader.cancel();
-    }
-  
+    },
   };
 
   return {
-    ...state, 
-    ...methods
+    ...state,
+    ...methods,
   };
 }

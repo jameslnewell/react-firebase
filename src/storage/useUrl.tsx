@@ -1,4 +1,3 @@
-
 import {useState, useEffect} from 'react';
 import 'firebase/storage';
 import {useApp} from '../app';
@@ -32,16 +31,19 @@ export function useUrl(path: string): UseURLOutput {
   const app = useApp();
   const [state, setState] = useState<State>({});
 
-  useEffect(() => {    
+  useEffect(() => {
     // reset the state whenever app or path changes
     setState({});
 
     // fetch the data
-    app.storage().ref(path).getDownloadURL().then(
-      url => setState({url, error: undefined}),
-      error => setState({error}),
-    );
-
+    app
+      .storage()
+      .ref(path)
+      .getDownloadURL()
+      .then(
+        url => setState({url, error: undefined}),
+        error => setState({error}),
+      );
   }, [app, path]);
 
   return [state.url, {status: getStatus(state), error: state.error}];

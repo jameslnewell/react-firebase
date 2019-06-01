@@ -7,9 +7,7 @@ export function UseMetadataExample() {
     <>
       {error && String(error)}
       <code>
-        <pre>
-          {metadata && JSON.stringify(metadata, null, 2)}
-        </pre>
+        <pre>{metadata && JSON.stringify(metadata, null, 2)}</pre>
       </code>
     </>
   );
