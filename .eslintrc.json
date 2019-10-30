@@ -1,18 +1,3 @@
 {
-  "extends": "@jameslnewell/eslint-config",
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "rules": {
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true,
-        "allowTypedFunctionExpressions": true
-      }
-    ]
-  }
+  "extends": "@jameslnewell/eslint-config/react"
 }

@@ -1,66 +1,43 @@
 {
-  "name": "@jameslnewell/react-firebase",
-  "version": "0.4.0",
-  "description": "React hooks for working with firebase.",
-  "main": "app/index",
-  "module": "app/index.mjs",
-  "files": [
-    "app",
-    "auth",
-    "firestore",
-    "storage"
-  ],
-  "peerDependencies": {
-    "@types/react": "^16.8.17",
-    "firebase": "^6.0.1",
-    "react": "^16.8.6"
+  "name": "react-firebase",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": {
+    "packages": [
+      "package",
+      "scripts",
+      "stories",
+      "tests"
+    ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@firebase/app-types": "^0.4.0",
-    "@jameslnewell/babel-preset": "^1.0.1",
-    "@jameslnewell/eslint-config": "^0.3.0",
-    "@jameslnewell/jest-preset-lint": "^1.0.0",
-    "@jameslnewell/jest-preset-test": "^1.0.0",
-    "@storybook/react": "^5.0.11",
-    "@types/jest": "^24.0.12",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.8.17",
-    "@types/storybook__react": "^4.0.1",
-    "awesome-typescript-loader": "^5.2.1",
-    "babel-loader": "^8.0.5",
-    "eslint": "^5.16.0",
-    "firebase": "^6.0.1",
-    "husky": "^2.2.0",
-    "jest": "^24.8.0",
-    "prettier": "^1.17.0",
-    "pretty-quick": "^1.10.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-testing-library": "^7.0.0",
-    "rollup": "^1.11.3",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-node-resolve": "^4.2.4",
-    "tslib": "^1.9.3",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "@babel/core": "^7.6.4",
+    "@jameslnewell/babel-preset": "^2.0.0",
+    "@jameslnewell/eslint-config": "^0.13.3",
+    "@jameslnewell/typescript-config": "^3.0.0",
+    "@types/react": "^16.9.9",
+    "eslint": "^6.5.1",
+    "firebase": "^7.2.0",
+    "husky": "^3.0.9",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "typescript": "^3.6.4"
   },
   "scripts": {
-    "clean": "rm -rf ./types app.js app.mjs auth.js auth.mjs firestore.js firestore.mjs storage.js storage.mjs",
-    "build:bundles": "rollup -c",
-    "build:types": "tsc --project tsconfig.types.json",
-    "build": "yarn run build:bundles && yarn run build:types",
-    "test": "jest",
-    "prepublishOnly": "yarn run test && yarn run build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "clean": "echo 'todo'",
+    "linting": "eslint --ext .ts,.tsx .",
+    "typing": "tsc --noEmit --project tsconfig.json",
+    "start": "BABEL_ENV=stories yarn workspace @jameslnewell/react-firebase-stories start",
+    "build": "BABEL_ENV=stories yarn workspace @jameslnewell/react-firebase-stories build",
+    "test": "yarn workspace @jameslnewell/react-firebase-tests test",
+    "prepublishOnly": "yarn run test && yarn run build"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }

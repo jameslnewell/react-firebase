@@ -1,16 +1,20 @@
 {
   "extends": "./node_modules/@jameslnewell/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["dom"],
-    "module": "esnext"
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@jameslnewell/react-firebase/app": ["./package/src/app"],
+      "@jameslnewell/react-firebase/auth": ["./package/src/auth"],
+      "@jameslnewell/react-firebase/firestore": ["./package/src/firestore"],
+      "@jameslnewell/react-firebase/storage": ["./package/src/storage"]
+    }
   },
-  "include": ["src", "typings"],
-  "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx",
-    "test/**/*.test.ts",
-    "test/**/*.test.tsx"
-  ]
+  "include": ["package/src", "package/typings", "stories"]
 }

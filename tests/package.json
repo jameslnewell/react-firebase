@@ -1,0 +1,13 @@
+{
+  "name": "@jameslnewell/react-firebase-tests",
+  "private": true,
+  "version": "0.1.0",
+  "devDependencies": {
+    "@types/jest": "^24.0.12",
+    "jest": "^24.9.0",
+    "@testing-library/react": "^9.3.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
