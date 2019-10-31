@@ -5,10 +5,11 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import {bundles} from './utils/bundles';
 
-function createRollupOptions(cwd: string, bundle: string) {
+function createRollupOptions(cwd: string, bundle: string): {} {
   const extensions = ['.ts', '.tsx', '.js', '.jsx', '.json'];
 
   // exclude dependencies which may be imported like `uuid` or `uuid/v4`
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const pkg = require(path.resolve(cwd, 'package.json'));
   const regexp = [
     '@jameslnewell/react-firebase/app',
@@ -17,8 +18,9 @@ function createRollupOptions(cwd: string, bundle: string) {
     '@jameslnewell/react-firebase/storage',
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
-  ].map(dep => new RegExp(`^${dep}($|\/)`));
-  const external = (id: string) => regexp.some(regexp => regexp.test(id));
+  ].map(dep => new RegExp(`^${dep}($|/)`));
+  const external = (id: string): boolean =>
+    regexp.some(regexp => regexp.test(id));
 
   return {
     input: path.resolve(cwd, `src/${bundle}/index.ts`),
@@ -58,7 +60,7 @@ function createRollupOptions(cwd: string, bundle: string) {
   };
 }
 
-export const createBundles = async (cwd: string) => {
+export const createBundles = async (cwd: string): Promise<void> => {
   await Promise.all(
     bundles.map(async bundle => {
       const result = await rollup(createRollupOptions(cwd, bundle));
@@ -68,7 +70,7 @@ export const createBundles = async (cwd: string) => {
           format: 'cjs',
         }),
         await result.write({
-          file: path.resolve(cwd, `${bundle}/index.mjs`),
+          file: path.resolve(cwd, `${bundle}/index.esm.js`),
           format: 'es',
         }),
       ]);

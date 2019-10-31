@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import * as React from 'react';
 import {
   useCollection,
@@ -19,11 +20,11 @@ export const CollectionExample: React.FC = wrap(() => {
     event.preventDefault();
     clear();
     createUser({name: input.value});
-  }
+  };
 
   const handleDeleteUser = (id: string): void => {
     deleteUser(id);
-  }
+  };
 
   return (
     <>
@@ -38,15 +39,16 @@ export const CollectionExample: React.FC = wrap(() => {
           </tr>
         </thead>
         <tbody>
-          {users && users.docs.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.get('name')}</td>
-              <td>
-                <button onClick={() => handleDeleteUser(user.id)}>-</button>
-              </td>
-            </tr>
-          ))}
+          {users &&
+            users.docs.map(user => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.get('name')}</td>
+                <td>
+                  <button onClick={() => handleDeleteUser(user.id)}>-</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <form onSubmit={handleCreateUser}>

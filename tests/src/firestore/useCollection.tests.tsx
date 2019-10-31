@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {renderHook} from '@testing-library/react-hooks';
 import {useCollection} from '@jameslnewell/react-firebase/firestore';
 import {wrapper} from '../wrapper';
@@ -44,7 +45,7 @@ describe('useCollection()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0].empty).not.toBeTruthy();
-    expect(Array.isArray(result.current[0].docs)).toBeTruthy();
+    expect(result.current[0]!.empty).not.toBeTruthy();
+    expect(Array.isArray(result.current[0]!.docs)).toBeTruthy();
   });
 });

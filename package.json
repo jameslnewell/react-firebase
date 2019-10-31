@@ -13,7 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@jameslnewell/babel-preset": "^2.0.0",
-    "@jameslnewell/eslint-config": "^0.13.3",
+    "@jameslnewell/eslint-config": "^0.13.5",
     "@jameslnewell/prettier-config": "^1.0.1",
     "@jameslnewell/typescript-config": "^3.0.0",
     "@types/react": "^16.9.9",
@@ -27,13 +27,13 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "linting": "eslint --ext .ts,.tsx .",
+    "linting": "eslint --ext .ts,.tsx . --fix",
     "typing": "tsc --noEmit --project tsconfig.json",
     "start": "BABEL_ENV=stories yarn workspace @jameslnewell/react-firebase-stories start",
     "clean": "yarn workspace @jameslnewell/react-firebase clean",
     "build": "yarn workspace @jameslnewell/react-firebase-scripts build",
     "test": "yarn workspace @jameslnewell/react-firebase-tests test",
-    "prepublishOnly": "yarn run test && yarn run build"
+    "publish": "yarn run linting && yarn run typing && yarn run test && yarn run build && cd package && npm publish"
   },
   "husky": {
     "hooks": {

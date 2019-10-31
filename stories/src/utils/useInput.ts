@@ -7,10 +7,10 @@ export type Input = [
   },
   {
     clear: () => void;
-  }
+  },
 ];
 
-export function useInput(initialValue: string = ''): Input {
+export function useInput(initialValue = ''): Input {
   const [value, setValue] = React.useState(initialValue);
 
   function clear(): void {

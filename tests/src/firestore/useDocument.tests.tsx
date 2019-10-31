@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {renderHook} from '@testing-library/react-hooks';
 import {useDocument} from '@jameslnewell/react-firebase/firestore';
 import {wrapper} from '../wrapper';
@@ -44,8 +45,8 @@ describe('useDocument()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0].exists).not.toBeTruthy();
-    expect(result.current[0].data()).toBeUndefined();
+    expect(result.current[0]!.exists).not.toBeTruthy();
+    expect(result.current[0]!.data()).toBeUndefined();
   });
 
   test('returned a document snapshot after mounting', async () => {
@@ -83,7 +84,7 @@ describe('useDocument()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0].exists).toBeTruthy();
-    expect(result.current[0].data()).not.toBeUndefined();
+    expect(result.current[0]!.exists).toBeTruthy();
+    expect(result.current[0]!.data()).not.toBeUndefined();
   });
 });

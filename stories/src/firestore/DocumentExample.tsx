@@ -1,8 +1,6 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import * as React from 'react';
-import {
-  useDocument,
-  useUpdateDocument
-} from '../../../package/src/firestore';
+import {useDocument, useUpdateDocument} from '../../../package/src/firestore';
 import {wrap} from '../wrap';
 import {useInput} from '../utils/useInput';
 
@@ -21,7 +19,7 @@ export const DocumentExample: React.FC = wrap(() => {
     event.preventDefault();
     clear();
     update(idInput.value, {name: nameInput.value});
-  }
+  };
 
   return (
     <>

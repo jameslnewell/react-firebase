@@ -6,7 +6,7 @@ import {bundles} from './utils/bundles';
 const mkdir = util.promisify(fs.mkdir);
 const writeFile = util.promisify(fs.writeFile);
 
-export const createManifests = async (cwd: string) => {
+export const createManifests = async (cwd: string): Promise<void> => {
   await Promise.all(
     bundles.map(async bundle => {
       const buildDirectory = path.resolve(cwd, bundle);
@@ -18,7 +18,7 @@ export const createManifests = async (cwd: string) => {
             name: `@jameslnewell/react-firebase/${bundle}`,
             private: true,
             main: 'index.js',
-            module: 'index.mjs',
+            module: 'index.esm.js',
             typings: 'index.d.ts',
             sideEffects: false,
           },

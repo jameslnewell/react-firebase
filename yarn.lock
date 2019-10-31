@@ -1239,10 +1239,10 @@
     "@babel/preset-react" "^7.6.3"
     "@babel/preset-typescript" "^7.6.0"
 
-"@jameslnewell/eslint-config@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/eslint-config/-/eslint-config-0.13.3.tgz#c69029f0a64d8aa5b251c5c8e2260586fc6f7ba6"
-  integrity sha512-/uAiSoBrtahSa6oDJYqg+1+TUXj/QaZWiMYOFo/k+lLF80fZ1rNnZRoUlP+1+s2ihosL2y8QhW6+Keb/WRKASw==
+"@jameslnewell/eslint-config@^0.13.5":
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/eslint-config/-/eslint-config-0.13.5.tgz#43f87abcaa3e66218da2b75f4eaf37727fd3509c"
+  integrity sha512-p86XHCtzb6BGAdPX5ePGzhz3kV3Qdn8t5XV0k/D+/CLkTwxJ13z5V2nW/nlBXVm/WH3avJyYJsAXjdX0DPts/A==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.3.3"
     "@typescript-eslint/parser" "^2.3.3"
@@ -1253,27 +1253,27 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.1.2"
 
-"@jameslnewell/observable@^1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/observable/-/observable-1.2.3.tgz#82b1d1b6034db94f8c4e39263e4c40e2b218361c"
-  integrity sha512-IDhAYS00hkxv95KU4imGGt4ObuZuAhkvx/eVdhRCuSLRe3SeJQE0DWaU2ecqmzTrjAQzpMI7+g51Ws0HQUDr8A==
+"@jameslnewell/observable@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/observable/-/observable-1.2.4.tgz#888b47b001a22c893fd91a864ed95c9575911231"
+  integrity sha512-N80izVY5Pq+3bC88tMIFyWi/A4QSTtkjWzROjDzin0znnVXOWc1bnC/7zT5eoXaUBvnTGxojkwE9TxAAUharJg==
 
 "@jameslnewell/prettier-config@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@jameslnewell/prettier-config/-/prettier-config-1.0.1.tgz#5bd6b247198d7a6148a1a605c9ff94ce51f3da1a"
   integrity sha512-GeiPM7JhbZuFx2gjoZh1jB6tk8atEdS529Bqbweo/exSAaESW/7jsqJ5rkDy1Trm31dYQnQG0ef1EBmtWxixdg==
 
-"@jameslnewell/react-observable@^2.0.0-preview.6":
-  version "2.0.0-preview.6"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/react-observable/-/react-observable-2.0.0-preview.6.tgz#3253d949c60ae85a910a34a7beaf152a83e6083c"
-  integrity sha512-fvlpquhXaC1srqJ1zrf2Or1ekZVdQ3rBNNtkBhsS7We6HCV8p+Xczaj5ORBTLXl+0fsJm7QgoFZt68v2cj7ChQ==
+"@jameslnewell/react-observable@^2.0.0-preview.8":
+  version "2.0.0-preview.8"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/react-observable/-/react-observable-2.0.0-preview.8.tgz#54415a50781af365edc08b60eb6c5f607a0da2a2"
+  integrity sha512-8jX+NBZTs0Tc9brSQkVmImaVHYw2TTL8LF8x/CllxQYfWe19p3U576fXbz110cqwMXrpvJbkbPB16hSQ+28B4A==
   dependencies:
-    "@jameslnewell/observable" "^1.2.3"
+    "@jameslnewell/observable" "^1.2.4"
 
-"@jameslnewell/react-promise@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/react-promise/-/react-promise-3.0.4.tgz#edfc0cc8b7bc7a4f735d2bc1bde359262886a4eb"
-  integrity sha512-UeOcR629TJopVJiz6cH9b1k+R1b7YmjmjkVy9DCAD3KprHUKQB7V/xIuBS8z5Tz4g6CCfD3/byXjbS5eYD7SOA==
+"@jameslnewell/react-promise@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/react-promise/-/react-promise-3.0.6.tgz#afb9d1cdab47f3cd7fde073b2fadf7491bcb4ec5"
+  integrity sha512-SUvOdfAModQauUkgKSXAkyhJ4EPhJsv0guGg/oCeoGu49rx1SKxHC1wjTEhMqE1alN94SVTkZGyFAH0V9L479g==
 
 "@jameslnewell/typescript-config@^3.0.0":
   version "3.0.0"

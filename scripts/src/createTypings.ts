@@ -3,7 +3,7 @@ import * as ts from 'typescript';
 import glob from 'fast-glob';
 import {bundles} from './utils/bundles';
 
-const compile = (fileNames: string[], options: ts.CompilerOptions) => {
+const compile = (fileNames: string[], options: ts.CompilerOptions): void => {
   const program = ts.createProgram(fileNames, options);
   const emitResult = program.emit();
 
@@ -13,10 +13,10 @@ const compile = (fileNames: string[], options: ts.CompilerOptions) => {
 
   allDiagnostics.forEach(diagnostic => {
     if (diagnostic.file) {
-      let {line, character} = diagnostic.file.getLineAndCharacterOfPosition(
-        diagnostic.start!,
+      const {line, character} = diagnostic.file.getLineAndCharacterOfPosition(
+        diagnostic.start,
       );
-      let message = ts.flattenDiagnosticMessageText(
+      const message = ts.flattenDiagnosticMessageText(
         diagnostic.messageText,
         '\n',
       );
@@ -36,7 +36,7 @@ const compile = (fileNames: string[], options: ts.CompilerOptions) => {
   }
 };
 
-export const createTypings = async (cwd: string) => {
+export const createTypings = async (cwd: string): Promise<void> => {
   await Promise.all(
     bundles.map(async bundle => {
       const buildDirectory = path.resolve(cwd, bundle);

@@ -5,7 +5,7 @@ import {bundles} from './utils/bundles';
 
 const mkdir = util.promisify(fs.mkdir);
 
-export const createDirectories = async (cwd: string) => {
+export const createDirectories = async (cwd: string): Promise<void> => {
   await Promise.all(
     bundles.map(async bundle => {
       const buildDirectory = path.resolve(cwd, bundle);

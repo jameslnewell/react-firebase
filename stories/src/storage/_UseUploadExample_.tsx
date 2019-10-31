@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react';
 import {useUpload, Upload} from '../storage';
 
