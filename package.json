@@ -33,7 +33,7 @@
     "clean": "yarn workspace @jameslnewell/react-firebase clean",
     "build": "yarn workspace @jameslnewell/react-firebase-scripts build",
     "test": "yarn workspace @jameslnewell/react-firebase-tests test",
-    "publish": "yarn run linting && yarn run typing && yarn run test && yarn run build && cd package && npm publish"
+    "publish": "yarn run clean && yarn run linting && yarn run typing && yarn run test && yarn run build && cd package && npm publish"
   },
   "husky": {
     "hooks": {

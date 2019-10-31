@@ -1,6 +1,6 @@
 {
   "name": "@jameslnewell/react-firebase",
-  "version": "0.5.0-preview.2",
+  "version": "0.5.0-preview.3",
   "description": "🎣 React hooks for working with firebase.",
   "keywords": [
     "firebase",
