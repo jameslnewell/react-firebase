@@ -1,8 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { create } from '@jameslnewell/observable';
+import {create} from '@jameslnewell/observable';
 import {useObservable} from '@jameslnewell/react-observable';
-import {useApp} from '../app';
+import {useApp} from '@jameslnewell/react-firebase/app';
 
 export enum UseUserStatus {
   Authenticating = 'authenticating',
@@ -12,19 +12,23 @@ export enum UseUserStatus {
 }
 
 export interface UseUserMetadata<E = any> {
-  status: UseUserStatus,
+  status: UseUserStatus;
   error: E | undefined;
   isAuthenticating: boolean;
   isAuthenticated: boolean;
   isUnauthenticated: boolean;
   isErrored: boolean;
-};
+}
 
 export function useUser(): [firebase.User | undefined, UseUserMetadata] {
   const app = useApp();
-  const [value, metadata] = useObservable(() => create<firebase.User | null>(observer => {
-    return app.auth().onAuthStateChanged(observer);
-  }), [app]);
+  const [value, metadata] = useObservable(
+    () =>
+      create<firebase.User | null>(observer => {
+        return app.auth().onAuthStateChanged(observer);
+      }),
+    [app],
+  );
 
   const user = value || app.auth().currentUser || undefined;
   const status = (() => {
@@ -41,7 +45,7 @@ export function useUser(): [firebase.User | undefined, UseUserMetadata] {
   })();
 
   return [
-    user, 
+    user,
     {
       status,
       error: metadata.error,
@@ -49,6 +53,6 @@ export function useUser(): [firebase.User | undefined, UseUserMetadata] {
       isAuthenticated: status === UseUserStatus.Authenticated,
       isUnauthenticated: status === UseUserStatus.Unauthenticated,
       isErrored: status === UseUserStatus.Errored,
-    }
+    },
   ];
 }

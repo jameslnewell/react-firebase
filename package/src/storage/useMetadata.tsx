@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import 'firebase/storage';
-import {useApp} from '../app';
+import {useApp} from '@jameslnewell/react-firebase/app';
 
 type Status = 'loading' | 'loaded' | 'errored';
 
@@ -9,7 +9,7 @@ type UseMetadataOutput = [
   {
     status: Status;
     error?: string;
-  }
+  },
 ];
 
 interface State {

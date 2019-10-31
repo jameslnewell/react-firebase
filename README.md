@@ -2,8 +2,4 @@
 
 🎣 React hooks for working with firebase.
 
-## Installation
-
-```bash
-yarn
-```
+See [./package/README.md](https://github.com/jameslnewell/react-firebase/tree/master/package/README.md)

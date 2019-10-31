@@ -1,18 +1,14 @@
-import * as firebase from 'firebase/app';
+import 'firebase/app';
 import 'firebase/auth';
-import {useInvokablePromise} from '@jameslnewell/react-promise';
-import {useApp} from '../app';
+import {useInvokablePromise, Metadata} from '@jameslnewell/react-promise';
+import {useApp} from '@jameslnewell/react-firebase/app';
 
-type Output = [
-  () => void,
-  {
-    value: void,
-    error: firebase.auth.Error | undefined,
-  }
-];
+type Output = [() => void, Metadata];
 
 export function useSignOut(): Output {
   const app = useApp();
-  const {invoke, ...otherProps} = useInvokablePromise(() => app.auth().signOut());
-  return [invoke, otherProps];
+  const [invoke, , metadata] = useInvokablePromise(() => app.auth().signOut(), [
+    app,
+  ]);
+  return [invoke, metadata];
 }

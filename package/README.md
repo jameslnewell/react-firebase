@@ -1,67 +1,61 @@
 # @jameslnewell/react-firebase
 
+![npm (scoped)](https://img.shields.io/npm/v/@jameslnewell/react-firebase.svg)
+[![Bundle Size](https://badgen.net/bundlephobia/minzip/@jameslnewell/react-firebase)](https://bundlephobia.com/result?p=@jameslnewell/react-firebase)
+[![Actions Status](https://github.com/jameslnewell/react-firebase/workflows/main/badge.svg)](https://github.com/jameslnewell/react-firebase/actions)
+
 🎣 React hooks for working with firebase.
 
 ## Installation
 
 NPM:
+
 ```bash
 npm install @jameslnewell/react-firebase
 ```
 
 Yarn:
+
 ```bash
 yarn add @jameslnewell/react-firebase
 ```
 
 ## Usage
 
-`firebase.js` - initialise a firebase app
+`index.js`
 
 ```jsx
-import * as firebase from 'firebase/app';
+import firebase from 'firebase';
+import 'firebase/app';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {AppProvider} from '@jameslnewell/react-firebase/app';
+import {App} from './App';
 
-export const app = firebase.initializeApp({
-  // firebase app options
+const app = firebase.initializeApp({
+  /* your firebase config */
 });
-```
 
-`App.jsx` - inject the firebase app into your root component
-
-```jsx
-import * as React from 'react';
-import {Provider} from '@jameslnewell/react-firebase/app';
-import {app} from './firebase';
-import {Navbar} from './Navbar';
-import {Albums} from './Albums';
-
-const App = () => (
-  <Provider app={app}>
-    <>
-      <Navbar/>
-      <Albums>
-    </>
-  </Provider>
+ReactDOM.render(
+  <AppProvider app={app}>
+    <App />
+  </AppProvider>,
+  document.getElementById('app'),
 );
-
 ```
 
-`Navbar.jsx` - use of authentication hooks
+`Navbar.js`
 
 ```jsx
-import * as React from 'react';
-import * as firebase from 'firebase/app';
+import React from 'react';
+import firebase from 'firebase';
 import 'firebase/auth';
-import {
-  useUser,
-  useSignInWithPopup,
-  useSignOut,
-} from '@jameslnewell/react-firebase/auth';
+import {useUser, useSignInWithPopup useSignOut} from '@jameslnewell/react-firebase/auth';
 
-const Navbar = () => {
-  const [, user] = useUser();
-  const [, , signIn] = useSignInWithPopup();
-  const [, , signOut] = useSignOut();
+export const Navbar = () => {
+  const [user] = useUser();
+  const [signIn] = useSignInWithPopup();
+  const [signOut] = useSignOut();
 
   const handleSignInOrOut = () => {
     if (user) {
@@ -73,116 +67,62 @@ const Navbar = () => {
 
   return (
     <nav>
-      {user && <b>{user.displayName}</b>}
-      <button onClick={handleSignInOrOut}>
-        {user ? 'Sign out' : 'Sign in'}
-      </button>
+      <button onClick={handleSignInOrOut}>{user ? 'Sign out' : Sign in}</button>
     </nav>
   );
-};
+}
 ```
 
-`Albums.jsx` - use of firestore hooks
+`UserProfile.js`
 
-```jsx
-import * as React from 'react';
-import {
-  useCollection,
-  useCreateDocument,
-} from '@jameslnewell/react-firebase/firestore';
+```js
+import React from 'react';
+import {useDocument} from '@jameslnewell/react-firebase/firestore';
 
-const Albums = () => {
-  const input = useRef(null);
-  const [, albums] = useCollection('albums');
-  const [, , createAlbum] = useCreateDocument('albums');
-  const [, , deleteAlbum] = useDeleteDocument('albums');
-  return (
-    <>
-      <ul>
-        {albums.map(([id, album]) => (
-          <div key={id}>
-            {album.name}
-            <button onClick={() => deleteAlbum(id)}>❌</button>
-          </div>
-        ))}
-      </ul>
-      <input ref={input} />
-      <button onClick={() => createAlbum({name: input.current.value})}>
-        ➕
-      </button>
-    </>
-  );
+export const UserProfile = ({userId}) => {
+  const [user, {status}] = useDocument(`users/${userId}`);
+  switch (status) {
+    case 'receiving':
+      return 'Loading...';
+    case 'errored':
+      return 'Unable to fetch profile for user';
+    default:
+      return (
+        <>
+          {user && user.id}
+          {user && user.get('name')}
+        </>
+      );
+  }
 };
 ```
 
 ## API
 
-### Auth
+### app
 
-#### `useUser()`
+#### &lt;Provider&gt;
 
-Retrieve information about the currently authenticated user.
+#### useApp()
 
-```js
-import {useUser} from '@jameslnewell/react-firebase/auth';
+### auth
 
-const [status, user, error] = useUser();
-```
+#### useUser()
 
-##### Returns:
+#### useSignInWithPopup()
 
-- `status` - One of `authenticated`, `unauthenticated` or `errored`.
-- `user` - A `firebase.User` or `undefined` if there is no authenticated user.
-- `error` - An `Error` or `undefined`.
+#### useSignOut()
 
-// TODO: useSignInWithPopup
-// TODO: useSignOut
+### firestore
 
-### Firestore
+#### useCollection()
 
-#### `useCollection(path: string)`
+#### useDocument()
 
-Retrieve multiple documents within a collection.
+#### useCreateDocument()
 
-```js
-import {useCollection} from '@jameslnewell/react-firebase/firestore';
+#### useUpdateDocument()
 
-const [status, albums, error] = useCollection('albums');
-```
+#### useDeleteDocument()
 
-##### Returns:
-
-- `status` - One of `loading`, `loaded` or `errored`.
-- `albums` - An array of documents.
-- `error` - The error.
-
-#### `useDocument(path: string)`
-
-```js
-import {useDocument} from '@jameslnewell/react-firebase/firestore';
-
-const [status, album, error] = useDocument(
-  'albums/992486b6-80f2-4141-b8c5-573fc541af9b',
-);
-```
-
-##### Returns:
-
-- `status` - One of `loading`, `loaded` or `errored`.
-- `album` - A document.
-- `error` - The error.
-
-// TODO: useCreateDocument
-// TODO: useUpdateDocument
-// TODO: useDeleteDocument
-
-### Storage
-
-// TODO: useUpload()
-
-```js
-const [status, error, upload, {pause, resume, cancel}] = useUpload();
-```
-
-// TODO: useURL()
-// TODO: useMeta()
+### storage

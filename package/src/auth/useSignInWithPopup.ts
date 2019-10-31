@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import {useInvokablePromise} from '@jameslnewell/react-promise';
-import {useApp} from '../app';
+import {useInvokablePromise, Metadata} from '@jameslnewell/react-promise';
+import {useApp} from '@jameslnewell/react-firebase/app';
 
 export enum UseSignInWithPopupStatus {
   Authenticating = 'authenticating',
@@ -10,16 +10,22 @@ export enum UseSignInWithPopupStatus {
   Errored = 'errored',
 }
 
+type Provider = firebase.auth.AuthProvider;
+type User = firebase.auth.UserCredential;
+
 type Output = [
-  (provider: firebase.auth.AuthProvider) => void,
-  {
-    value: firebase.auth.UserCredential | undefined,
-    error: firebase.auth.Error | undefined
-  }
+  (provider: Provider) => void,
+  Metadata & {
+    value: User | undefined;
+  },
 ];
 
 export function useSignInWithPopup(): Output {
   const app = useApp();
-  const {invoke, ...otherProps} = useInvokablePromise((provider: firebase.auth.AuthProvider) => app.auth().signInWithPopup(provider));
-  return [invoke, otherProps];
+  const [invoke, value, metadata] = useInvokablePromise(
+    (provider: firebase.auth.AuthProvider) =>
+      app.auth().signInWithPopup(provider),
+    [app],
+  );
+  return [invoke, {...metadata, value}];
 }

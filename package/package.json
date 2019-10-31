@@ -2,15 +2,35 @@
   "name": "@jameslnewell/react-firebase",
   "version": "0.5.0-preview.1",
   "description": "🎣 React hooks for working with firebase.",
+  "keywords": [
+    "firebase",
+    "react",
+    "hooks",
+    "firestore",
+    "auth",
+    "storage",
+    "google"
+  ],
+  "repository": "jameslnewell/react-firebase",
+  "sideEffects": false,
+  "files": [
+    "app",
+    "auth",
+    "firestore",
+    "storage"
+  ],
   "dependencies": {
-    "@jameslnewell/observable": "^1.1.0",
-    "@jameslnewell/react-observable": "^2.0.0-preview.5",
-    "@jameslnewell/react-promise": "^3.0.2"
+    "@jameslnewell/observable": "^1.2.3",
+    "@jameslnewell/react-observable": "^2.0.0-preview.6",
+    "@jameslnewell/react-promise": "^3.0.4"
   },
   "peerDependencies": {
     "@types/react": "^16.9.11",
     "firebase": "^7.2.2",
     "react": "^16.11.0"
+  },
+  "scripts": {
+    "clean": "rm -rf app auth firestore storage"
   },
   "license": "MIT"
 }

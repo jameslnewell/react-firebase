@@ -16,5 +16,10 @@
       "@jameslnewell/react-firebase/storage": ["./package/src/storage"]
     }
   },
-  "include": ["package/src", "package/typings", "stories"]
+  "include": [
+    "package/src",
+    "package/typings",
+    "stories",
+    "tests/src/useCollection.tests.tsx"
+  ]
 }

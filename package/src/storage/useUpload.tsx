@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import {useApp} from '../app';
+import {useApp} from '@jameslnewell/react-firebase/app';
 
 type Snapshot = firebase.storage.UploadTaskSnapshot;
 
