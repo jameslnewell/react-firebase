@@ -101,7 +101,7 @@ export const UserProfile = ({userId}) => {
 
 ### app
 
-#### &lt;Provider&gt;
+#### &lt;AppProvider&gt;
 
 #### useApp()
 
@@ -124,5 +124,9 @@ export const UserProfile = ({userId}) => {
 #### useUpdateDocument()
 
 #### useDeleteDocument()
+
+#### &lt;Collection&gt;
+
+#### &lt;Document&gt;
 
 ### storage
