@@ -16,7 +16,7 @@ export type UseUpdateDocumentMetadata = UseInvokablePromiseMetadata;
 export function useUpdateDocument(
   collection: string,
 ): [
-  (id: string, data: UseUpdateDocumentData) => void,
+  (id: string, data: UseUpdateDocumentData) => Promise<void>,
   UseUpdateDocumentMetadata,
 ] {
   const app = useApp();

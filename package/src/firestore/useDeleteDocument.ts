@@ -13,7 +13,7 @@ export type UseDeleteDocumentMetadata = UseInvokablePromiseMetadata;
 
 export function useDeleteDocument(
   collection: string,
-): [(id: string) => void, UseDeleteDocumentMetadata] {
+): [(id: string) => Promise<void>, UseDeleteDocumentMetadata] {
   const app = useApp();
   const [invoke, , meta] = useInvokablePromise(
     (id: string) =>

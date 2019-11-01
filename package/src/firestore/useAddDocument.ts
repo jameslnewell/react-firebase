@@ -17,7 +17,10 @@ export type UseAddDocumentMetadata = UseInvokablePromiseMetadata & {
 
 export function useAddDocument(
   collection: string,
-): [(data: UseAddDocumentData) => void, UseAddDocumentMetadata] {
+): [
+  (data: UseAddDocumentData) => Promise<UseAddDocumentReference>,
+  UseAddDocumentMetadata,
+] {
   const app = useApp();
   const [invoke, value, meta] = useInvokablePromise(
     (data: UseAddDocumentData) =>
