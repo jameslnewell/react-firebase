@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {renderHook} from '@testing-library/react-hooks';
-import {useCollection} from '@jameslnewell/react-firebase/firestore';
+import {
+  UseCollectionStatus,
+  useCollection,
+} from '@jameslnewell/react-firebase/firestore';
 import {wrapper} from '../wrapper';
-import {Status} from '@jameslnewell/react-observable';
 import {app} from '../app';
 
 describe('useCollection()', () => {
@@ -21,7 +23,7 @@ describe('useCollection()', () => {
     expect(result.current).toEqual([
       undefined,
       {
-        status: Status.Waiting,
+        status: UseCollectionStatus.Waiting,
         isWaiting: true,
         isReceived: false,
         isCompleted: false,
@@ -36,7 +38,7 @@ describe('useCollection()', () => {
     expect(result.current).toEqual([
       expect.any(Object),
       {
-        status: Status.Receieved,
+        status: UseCollectionStatus.Receieved,
         isWaiting: false,
         isReceived: true,
         isCompleted: false,

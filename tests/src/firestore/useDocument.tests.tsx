@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {renderHook} from '@testing-library/react-hooks';
-import {useDocument} from '@jameslnewell/react-firebase/firestore';
+import {
+  useDocument,
+  UseDocumentStatus,
+} from '@jameslnewell/react-firebase/firestore';
 import {wrapper} from '../wrapper';
-import {Status} from '@jameslnewell/react-observable';
 import {app} from '../app';
 
 describe('useDocument()', () => {
@@ -21,7 +23,7 @@ describe('useDocument()', () => {
     expect(result.current).toEqual([
       undefined,
       {
-        status: Status.Waiting,
+        status: UseDocumentStatus.Waiting,
         isWaiting: true,
         isReceived: false,
         isCompleted: false,
@@ -36,7 +38,7 @@ describe('useDocument()', () => {
     expect(result.current).toEqual([
       expect.any(Object),
       {
-        status: Status.Receieved,
+        status: UseDocumentStatus.Receieved,
         isWaiting: false,
         isReceived: true,
         isCompleted: false,
@@ -60,7 +62,7 @@ describe('useDocument()', () => {
     expect(result.current).toEqual([
       undefined,
       {
-        status: Status.Waiting,
+        status: UseDocumentStatus.Waiting,
         isWaiting: true,
         isReceived: false,
         isCompleted: false,
@@ -75,7 +77,7 @@ describe('useDocument()', () => {
     expect(result.current).toEqual([
       expect.any(Object),
       {
-        status: Status.Receieved,
+        status: UseDocumentStatus.Receieved,
         isWaiting: false,
         isReceived: true,
         isCompleted: false,
