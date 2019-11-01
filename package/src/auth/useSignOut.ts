@@ -1,11 +1,14 @@
 import 'firebase/app';
 import 'firebase/auth';
-import {useInvokablePromise, Metadata} from '@jameslnewell/react-promise';
+import {
+  useInvokablePromise,
+  UseInvokablePromiseMetadata,
+} from '@jameslnewell/react-promise';
 import {useApp} from '@jameslnewell/react-firebase/app';
 
-type Output = [() => void, Metadata];
+export type UseSignOutMetadata = UseInvokablePromiseMetadata;
 
-export function useSignOut(): Output {
+export function useSignOut(): [() => void, UseInvokablePromiseMetadata] {
   const app = useApp();
   const [invoke, , metadata] = useInvokablePromise(() => app.auth().signOut(), [
     app,

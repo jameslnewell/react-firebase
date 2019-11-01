@@ -1,16 +1,27 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import {useInvokablePromise, Metadata} from '@jameslnewell/react-promise';
+import {
+  useInvokablePromise,
+  UseInvokablePromiseStatus,
+  UseInvokablePromiseMetadata,
+} from '@jameslnewell/react-promise';
 import {useApp} from '@jameslnewell/react-firebase/app';
 
-type Data = firebase.firestore.DocumentData;
+export const UseUpdateDocumentStatus = UseInvokablePromiseStatus;
+export type UseUpdateDocumentStatus = UseInvokablePromiseStatus;
+export type UseUpdateDocumentData = firebase.firestore.DocumentData;
+export type UseUpdateDocumentReference = firebase.firestore.DocumentReference;
+export type UseUpdateDocumentMetadata = UseInvokablePromiseMetadata;
 
 export function useUpdateDocument(
   collection: string,
-): [(id: string, data: Data) => void, Metadata] {
+): [
+  (id: string, data: UseUpdateDocumentData) => void,
+  UseUpdateDocumentMetadata,
+] {
   const app = useApp();
   const [invoke, , meta] = useInvokablePromise(
-    (id: string, data: Data) =>
+    (id: string, data: UseUpdateDocumentData) =>
       app
         .firestore()
         .collection(collection)
@@ -18,5 +29,5 @@ export function useUpdateDocument(
         .update(data),
     [app, collection],
   );
-  return [invoke, {...meta}];
+  return [invoke, meta];
 }

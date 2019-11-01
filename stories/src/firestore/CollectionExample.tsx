@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {
   useCollection,
-  useCreateDocument,
+  useAddDocument,
   useDeleteDocument,
 } from '@jameslnewell/react-firebase/src/firestore';
 import {wrap} from '../wrap';
@@ -16,7 +16,7 @@ const collection = 'users';
 
 export const CollectionExample: React.FC = wrap(() => {
   const [users, {status, error}] = useCollection(collection);
-  const [createUser] = useCreateDocument(collection);
+  const [createUser] = useAddDocument(collection);
   const [deleteUser] = useDeleteDocument(collection);
   const [input, {clear}] = useInput();
 

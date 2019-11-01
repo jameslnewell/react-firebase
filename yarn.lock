@@ -1270,10 +1270,10 @@
   dependencies:
     "@jameslnewell/observable" "^1.2.4"
 
-"@jameslnewell/react-promise@^3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/react-promise/-/react-promise-3.0.6.tgz#afb9d1cdab47f3cd7fde073b2fadf7491bcb4ec5"
-  integrity sha512-SUvOdfAModQauUkgKSXAkyhJ4EPhJsv0guGg/oCeoGu49rx1SKxHC1wjTEhMqE1alN94SVTkZGyFAH0V9L479g==
+"@jameslnewell/react-promise@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/react-promise/-/react-promise-3.1.0.tgz#6adfb38d7f7a89f8061771e2ba90db6779962c54"
+  integrity sha512-hFyVeM9hKja679+pIG6JDKlL4HHQZAoCWWfnHWc5/RbXnVszHzxadSarErz4DwOJhz6sdTwW6fie1wYa/63ATA==
 
 "@jameslnewell/typescript-config@^3.0.0":
   version "3.0.0"

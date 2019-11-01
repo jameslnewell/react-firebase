@@ -11,6 +11,8 @@ export enum UseUserStatus {
   Errored = 'errored',
 }
 
+export type UseUserUser = firebase.User;
+
 export interface UseUserMetadata<E = any> {
   status: UseUserStatus;
   error: E | undefined;
@@ -20,7 +22,7 @@ export interface UseUserMetadata<E = any> {
   isErrored: boolean;
 }
 
-export function useUser(): [firebase.User | undefined, UseUserMetadata] {
+export function useUser(): [UseUserUser | undefined, UseUserMetadata] {
   const app = useApp();
   const [value, metadata] = useObservable(
     () =>
