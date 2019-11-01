@@ -6,7 +6,7 @@ import {
   useDocument,
 } from './useDocument';
 
-export const CollectionStatus = UseDocumentStatus;
+export const DocumentStatus = UseDocumentStatus;
 export type DocumentStatus = UseDocumentStatus;
 export type DocumentSnapshot = UseDocumentSnapshot;
 export type DocumentMetadata = UseDocumentMetadata;
