@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import * as React from 'react';
-import {useDocument, useUpdateDocument} from '../../../package/src/firestore';
+import {
+  useDocument,
+  useUpdateDocument,
+} from '@jameslnewell/react-firebase/src/firestore';
 import {wrap} from '../wrap';
 import {useInput} from '../utils/useInput';
 

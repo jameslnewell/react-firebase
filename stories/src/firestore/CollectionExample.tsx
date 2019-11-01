@@ -4,9 +4,13 @@ import {
   useCollection,
   useCreateDocument,
   useDeleteDocument,
-} from '../../../package/src/firestore';
+} from '@jameslnewell/react-firebase/src/firestore';
 import {wrap} from '../wrap';
 import {useInput} from '../utils/useInput';
+
+export default {
+  title: 'firestore',
+};
 
 const collection = 'users';
 

@@ -1263,10 +1263,10 @@
   resolved "https://registry.yarnpkg.com/@jameslnewell/prettier-config/-/prettier-config-1.0.1.tgz#5bd6b247198d7a6148a1a605c9ff94ce51f3da1a"
   integrity sha512-GeiPM7JhbZuFx2gjoZh1jB6tk8atEdS529Bqbweo/exSAaESW/7jsqJ5rkDy1Trm31dYQnQG0ef1EBmtWxixdg==
 
-"@jameslnewell/react-observable@^2.0.0-preview.8":
-  version "2.0.0-preview.8"
-  resolved "https://registry.yarnpkg.com/@jameslnewell/react-observable/-/react-observable-2.0.0-preview.8.tgz#54415a50781af365edc08b60eb6c5f607a0da2a2"
-  integrity sha512-8jX+NBZTs0Tc9brSQkVmImaVHYw2TTL8LF8x/CllxQYfWe19p3U576fXbz110cqwMXrpvJbkbPB16hSQ+28B4A==
+"@jameslnewell/react-observable@^2.0.0-preview.9":
+  version "2.0.0-preview.9"
+  resolved "https://registry.yarnpkg.com/@jameslnewell/react-observable/-/react-observable-2.0.0-preview.9.tgz#802aae20eeb435ddea5fa93cae488d5af13ff9db"
+  integrity sha512-dGQDWG787xNP7+wSwuJEm9U2+V1RW9GI+ef0LdXp3hRsYYis2lnYqy66YDsKj4IZb8ZRmH0hOYsIhlcJBNfrLA==
   dependencies:
     "@jameslnewell/observable" "^1.2.4"
 

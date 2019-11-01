@@ -1,6 +1,6 @@
 {
   "name": "@jameslnewell/react-firebase",
-  "version": "0.5.0-preview.3",
+  "version": "0.5.0-preview.4",
   "description": "🎣 React hooks for working with firebase.",
   "keywords": [
     "firebase",
@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@jameslnewell/observable": "^1.2.4",
-    "@jameslnewell/react-observable": "^2.0.0-preview.8",
+    "@jameslnewell/react-observable": "^2.0.0-preview.9",
     "@jameslnewell/react-promise": "^3.0.6"
   },
   "peerDependencies": {
