@@ -68,10 +68,12 @@ export const createBundles = async (cwd: string): Promise<void> => {
         await result.write({
           file: path.resolve(cwd, `${bundle}/index.js`),
           format: 'cjs',
+          sourcemap: true,
         }),
         await result.write({
           file: path.resolve(cwd, `${bundle}/index.esm.js`),
           format: 'es',
+          sourcemap: true,
         }),
       ]);
     }),
