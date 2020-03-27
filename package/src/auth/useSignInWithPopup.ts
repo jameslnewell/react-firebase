@@ -4,7 +4,7 @@ import {
   useInvokablePromise,
   UseInvokablePromiseMetadata,
 } from '@jameslnewell/react-promise';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export type UseSignInWithPopupProvider = firebase.auth.AuthProvider;
 export type UseSignInWithPopupUser = firebase.auth.UserCredential;

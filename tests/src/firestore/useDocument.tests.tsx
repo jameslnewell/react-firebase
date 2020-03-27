@@ -47,8 +47,9 @@ describe('useDocument()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0]!.exists).not.toBeTruthy();
-    expect(result.current[0]!.data()).toBeUndefined();
+    const [snapshot] = result.current;
+    expect(snapshot && snapshot.exists).not.toBeTruthy();
+    expect(snapshot && snapshot.data()).toBeUndefined();
   });
 
   test('returned a document snapshot after mounting', async () => {
@@ -86,7 +87,8 @@ describe('useDocument()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0]!.exists).toBeTruthy();
-    expect(result.current[0]!.data()).not.toBeUndefined();
+    const [snapshot] = result.current;
+    expect(snapshot && snapshot.exists).toBeTruthy();
+    expect(snapshot && snapshot.data()).not.toBeUndefined();
   });
 });

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import 'firebase/storage';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 type Status = 'loading' | 'loaded' | 'errored';
 
@@ -40,7 +40,10 @@ export function useMetadata(path: string): UseMetadataOutput {
       .storage()
       .ref(path)
       .getMetadata()
-      .then(metadata => setState({metadata}), error => setState({error}));
+      .then(
+        (metadata) => setState({metadata}),
+        (error) => setState({error}),
+      );
   }, [app, path]);
 
   return [

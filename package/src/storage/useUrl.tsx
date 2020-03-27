@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import 'firebase/storage';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 type Status = 'loading' | 'loaded' | 'errored';
 
@@ -41,8 +41,8 @@ export function useUrl(path: string): UseURLOutput {
       .ref(path)
       .getDownloadURL()
       .then(
-        url => setState({url, error: undefined}),
-        error => setState({error}),
+        (url) => setState({url, error: undefined}),
+        (error) => setState({error}),
       );
   }, [app, path]);
 

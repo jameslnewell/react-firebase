@@ -3,7 +3,7 @@ node_modules
 yarn-error.log
 
 # ignore distributable directories
-package/app/
-package/auth/
-package/firestore/
-package/storage/
+package/dist/
+package/auth/dist/
+package/firestore/dist/
+package/storage/dist/

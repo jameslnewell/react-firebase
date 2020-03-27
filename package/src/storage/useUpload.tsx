@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 type Snapshot = firebase.storage.UploadTaskSnapshot;
 
@@ -110,7 +110,7 @@ export function useUpload(path: string): Upload {
           setState(updated(task.snapshot));
           setState(updated(task.snapshot));
         },
-        error: error => {
+        error: (error) => {
           setUploader(undefined);
           setState(errored(task.snapshot, error));
         },

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "main": "dist/react-firebase.cjs.js",
+  "module": "dist/react-firebase.esm.js",
+  "preconstruct": {
+    "source": "../src/auth/index"
+  }
+}

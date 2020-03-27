@@ -1,38 +1,39 @@
 {
   "name": "react-firebase",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "workspaces": {
     "packages": [
       "package",
-      "scripts",
       "stories",
       "tests"
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
+    "@babel/core": "^7.9.0",
     "@jameslnewell/babel-preset": "^2.0.0",
     "@jameslnewell/eslint-config": "^0.13.5",
     "@jameslnewell/prettier-config": "^1.0.1",
     "@jameslnewell/typescript-config": "^3.0.0",
-    "@types/react": "^16.9.9",
-    "eslint": "^6.5.1",
-    "firebase": "^7.2.0",
-    "husky": "^3.0.9",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^2.0.0",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "typescript": "^3.6.4"
+    "@preconstruct/cli": "^1.1.8",
+    "@types/react": "^16.9.26",
+    "eslint": "^6.8.0",
+    "firebase": "^7.13.0",
+    "husky": "^4.2.3",
+    "prettier": "^2.0.2",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.8.3"
   },
   "scripts": {
+    "postinstall": "preconstruct dev",
     "linting": "eslint --ext .ts,.tsx . --fix",
     "typing": "tsc --noEmit --project tsconfig.json",
-    "start": "BABEL_ENV=stories yarn workspace @jameslnewell/react-firebase-stories start",
-    "clean": "yarn workspace @jameslnewell/react-firebase clean",
-    "build": "yarn workspace @jameslnewell/react-firebase-scripts build",
-    "test": "yarn workspace @jameslnewell/react-firebase-tests test",
+    "start": "BABEL_ENV=stories yarn workspace stories start",
+    "clean": "",
+    "build": "preconstruct build",
+    "test": "yarn workspace tests test",
     "publish": "yarn run clean && yarn run linting && yarn run typing && yarn run test && yarn run build && cd package && npm publish"
   },
   "husky": {
@@ -40,5 +41,13 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "preconstruct": {
+    "packages": [
+      "package"
+    ]
+  },
+  "dependencies": {
+    "@jameslnewell/jest-preset-test": "^5.1.0"
+  }
 }

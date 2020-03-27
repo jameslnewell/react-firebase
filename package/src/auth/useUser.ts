@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import {create} from '@jameslnewell/observable';
 import {useObservable} from '@jameslnewell/react-observable';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export enum UseUserStatus {
   Authenticating = 'authenticating',
@@ -26,7 +26,7 @@ export function useUser(): [UseUserUser | undefined, UseUserMetadata] {
   const app = useApp();
   const [value, metadata] = useObservable(
     () =>
-      create<firebase.User | null>(observer => {
+      create<firebase.User | null>((observer) => {
         return app.auth().onAuthStateChanged(observer);
       }),
     [app],

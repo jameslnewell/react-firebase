@@ -29,7 +29,7 @@ import firebase from 'firebase';
 import 'firebase/app';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppProvider} from '@jameslnewell/react-firebase/app';
+import {AppProvider} from '@jameslnewell/react-firebase';
 import {App} from './App';
 
 const app = firebase.initializeApp({
@@ -48,7 +48,7 @@ ReactDOM.render(
 
 ```jsx
 import React from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import {useUser, useSignInWithPopup useSignOut} from '@jameslnewell/react-firebase/auth';
 
@@ -61,7 +61,7 @@ export const Navbar = () => {
     if (user) {
       signOut();
     } else {
-      signIn(new firebase.auth.GoogleProvider());
+      signIn(new firebase.auth.GoogleAuthProvider());
     }
   };
 

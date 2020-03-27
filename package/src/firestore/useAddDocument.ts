@@ -5,7 +5,7 @@ import {
   UseInvokablePromiseStatus,
   UseInvokablePromiseMetadata,
 } from '@jameslnewell/react-promise';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export const UseAddDocumentStatus = UseInvokablePromiseStatus;
 export type UseAddDocumentStatus = UseInvokablePromiseStatus;
@@ -24,10 +24,7 @@ export function useAddDocument(
   const app = useApp();
   const [invoke, value, meta] = useInvokablePromise(
     (data: UseAddDocumentData) =>
-      app
-        .firestore()
-        .collection(collection)
-        .add(data),
+      app.firestore().collection(collection).add(data),
     [app, collection],
   );
   return [invoke, {...meta, value}];

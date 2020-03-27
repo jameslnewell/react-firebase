@@ -5,7 +5,7 @@ import {
   UseInvokablePromiseStatus,
   UseInvokablePromiseMetadata,
 } from '@jameslnewell/react-promise';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export const UseDeleteDocumentStatus = UseInvokablePromiseStatus;
 export type UseDeleteDocumentStatus = UseInvokablePromiseStatus;
@@ -16,12 +16,7 @@ export function useDeleteDocument(
 ): [(id: string) => Promise<void>, UseDeleteDocumentMetadata] {
   const app = useApp();
   const [invoke, , meta] = useInvokablePromise(
-    (id: string) =>
-      app
-        .firestore()
-        .collection(collection)
-        .doc(id)
-        .delete(),
+    (id: string) => app.firestore().collection(collection).doc(id).delete(),
     [app, collection],
   );
   return [invoke, {...meta}];

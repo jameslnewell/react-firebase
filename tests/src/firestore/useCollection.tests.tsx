@@ -47,7 +47,8 @@ describe('useCollection()', () => {
     ]);
 
     // expect the database to return some results
-    expect(result.current[0]!.empty).not.toBeTruthy();
-    expect(Array.isArray(result.current[0]!.docs)).toBeTruthy();
+    const [snapshot] = result.current;
+    expect(snapshot && snapshot.empty).not.toBeTruthy();
+    expect(Array.isArray(snapshot && snapshot.docs)).toBeTruthy();
   });
 });

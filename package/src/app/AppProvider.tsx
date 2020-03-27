@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as firebase from 'firebase/app';
-import {Context} from './Context';
+import {AppContext} from './AppContext';
 
 export interface AppProviderProps {
   app: firebase.app.App;
@@ -8,5 +8,5 @@ export interface AppProviderProps {
 }
 
 export function AppProvider({app, children}: AppProviderProps): JSX.Element {
-  return <Context.Provider value={app}>{children}</Context.Provider>;
+  return <AppContext.Provider value={app}>{children}</AppContext.Provider>;
 }

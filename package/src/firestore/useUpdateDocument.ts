@@ -5,7 +5,7 @@ import {
   UseInvokablePromiseStatus,
   UseInvokablePromiseMetadata,
 } from '@jameslnewell/react-promise';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export const UseUpdateDocumentStatus = UseInvokablePromiseStatus;
 export type UseUpdateDocumentStatus = UseInvokablePromiseStatus;
@@ -22,11 +22,7 @@ export function useUpdateDocument(
   const app = useApp();
   const [invoke, , meta] = useInvokablePromise(
     (id: string, data: UseUpdateDocumentData) =>
-      app
-        .firestore()
-        .collection(collection)
-        .doc(id)
-        .update(data),
+      app.firestore().collection(collection).doc(id).update(data),
     [app, collection],
   );
   return [invoke, meta];

@@ -6,7 +6,7 @@ import {
   UseObservableMetadata,
   useObservable,
 } from '@jameslnewell/react-observable';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export const UseCollectionStatus = UseObservableStatus;
 export type UseCollectionStatus = UseObservableStatus;
@@ -19,11 +19,8 @@ export function useCollection(
   const app = useApp();
   return useObservable(
     () =>
-      create<UseCollectionSnapshot, Error>(observer =>
-        app
-          .firestore()
-          .collection(path)
-          .onSnapshot(observer),
+      create<UseCollectionSnapshot, Error>((observer) =>
+        app.firestore().collection(path).onSnapshot(observer),
       ),
     [app, path],
   );

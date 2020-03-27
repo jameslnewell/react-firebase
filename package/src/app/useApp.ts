@@ -1,11 +1,11 @@
 import {useContext} from 'react';
 import * as firebase from 'firebase';
-import {Context} from './Context';
+import {AppContext} from './AppContext';
 
 export const useApp = (): firebase.app.App => {
-  const app = useContext(Context);
+  const app = useContext(AppContext);
   if (!app) {
-    throw new Error('Please provide a firebase app: <Provider app={app}/>.');
+    throw new Error('Please provide a firebase app: <AppProvider app={app}/>.');
   }
   return app;
 };

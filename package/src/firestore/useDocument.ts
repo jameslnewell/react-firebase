@@ -6,7 +6,7 @@ import {
   UseObservableMetadata,
   useObservable,
 } from '@jameslnewell/react-observable';
-import {useApp} from '@jameslnewell/react-firebase/app';
+import {useApp} from '../app';
 
 export const UseDocumentStatus = UseObservableStatus;
 export type UseDocumentStatus = UseObservableStatus;
@@ -18,13 +18,7 @@ export function useDocument(
 ): [UseDocumentSnapshot | undefined, UseDocumentMetadata] {
   const app = useApp();
   return useObservable(
-    () =>
-      create(observer =>
-        app
-          .firestore()
-          .doc(path)
-          .onSnapshot(observer),
-      ),
+    () => create((observer) => app.firestore().doc(path).onSnapshot(observer)),
     [app, path],
   );
 }
