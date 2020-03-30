@@ -24,11 +24,11 @@ const props = {
 };
 
 export const Loaded = wrap(() => (
-  <Document {...props}>{user => <User user={user} />}</Document>
+  <Document {...props}>{(user) => <User user={user} />}</Document>
 ));
 
 export const Unfound = wrap(() => (
   <Document {...props} path="users/userid-does-not-exist">
-    {user => <User user={user} />}
+    {(user) => <User user={user} />}
   </Document>
 ));

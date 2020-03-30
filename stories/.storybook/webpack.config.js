@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = ({config}) => {
   config.resolve.extensions.push('.ts', '.tsx');
-  ['app', 'auth', 'firestore', 'storage'].forEach(bundle => {
+  ['app', 'auth', 'firestore', 'storage'].forEach((bundle) => {
     config.resolve.alias[
       `@jameslnewell/react-firebase/${bundle}`
     ] = path.resolve(`${__dirname}/../../package/src/${bundle}/`);

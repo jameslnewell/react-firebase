@@ -44,7 +44,7 @@ export const CollectionExample: React.FC = wrap(() => {
         </thead>
         <tbody>
           {users &&
-            users.docs.map(user => (
+            users.docs.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.get('name')}</td>

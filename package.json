@@ -35,6 +35,8 @@
     "postinstall": "preconstruct dev",
     "linting": "eslint --ext .ts,.tsx . --fix",
     "typing": "tsc --noEmit --project tsconfig.json",
+    "formatting": "prettier --check '**/*.{js,json,md,ts,tsx}'",
+    "format": "prettier --write '**/*.{js,json,md,ts,tsx}'",
     "start": "BABEL_ENV=stories yarn workspace stories start",
     "clean": "echo 'Cleaning...'",
     "build": "preconstruct build",

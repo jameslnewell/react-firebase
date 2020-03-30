@@ -1,17 +1,16 @@
-
 module.exports = (api) => {
   api.cache.forever();
-  return ({
-    "presets": ["@jameslnewell/babel-preset"],
+  return {
+    presets: ['@jameslnewell/babel-preset'],
     env: {
       stories: {
-        "presets": [
+        presets: [
           [
-            "@jameslnewell/babel-preset", { "modules": false, "useBuiltIns": "usage", "corejs": 3 }
-          ]
-        ]       
-      }
-    }
-  });
-}
-
+            '@jameslnewell/babel-preset',
+            {modules: false, useBuiltIns: 'usage', corejs: 3},
+          ],
+        ],
+      },
+    },
+  };
+};

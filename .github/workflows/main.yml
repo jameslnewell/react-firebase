@@ -17,12 +17,28 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: install
         run: |
           yarn install
-      - name: check
+      - name: typing
         run: |
-          yarn run check
+          yarn run typing
+      - name: linting
+        run: |
+          yarn run linting
+      - name: formatting
+        run: |
+          yarn run formatting
       - name: build
         run: |
           yarn run build

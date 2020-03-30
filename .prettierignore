@@ -1,4 +1,3 @@
-
 # ignore distributable directories
 package/dist/
 package/auth/dist/

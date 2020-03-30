@@ -14,7 +14,7 @@ const UserList: React.FC<{users: firebase.firestore.QuerySnapshot}> = ({
   users,
 }) => (
   <ul>
-    {users.docs.map(user => (
+    {users.docs.map((user) => (
       <li key={user.id}>{user.get('name')}</li>
     ))}
   </ul>
@@ -28,11 +28,11 @@ const props = {
 };
 
 export const Loaded = wrap(() => (
-  <Collection {...props}>{users => <UserList users={users} />}</Collection>
+  <Collection {...props}>{(users) => <UserList users={users} />}</Collection>
 ));
 
 export const Empty = wrap(() => (
   <Collection {...props} path="xyz">
-    {users => <UserList users={users} />}
+    {(users) => <UserList users={users} />}
   </Collection>
 ));
