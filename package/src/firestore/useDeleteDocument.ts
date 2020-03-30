@@ -1,5 +1,3 @@
-import 'firebase/app';
-import 'firebase/firestore';
 import {
   useInvokablePromise,
   UseInvokablePromiseStatus,

@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import 'firebase/storage';
 import {useApp} from '../app';
 
 type Status = 'loading' | 'loaded' | 'errored';

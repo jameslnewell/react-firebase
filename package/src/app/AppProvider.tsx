@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import {AppContext} from './AppContext';
 
 export interface AppProviderProps {

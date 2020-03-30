@@ -1,12 +1,15 @@
 import * as React from 'react';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import * as firebase from 'firebase';
 import {wrap} from '../wrap';
-import {useUser, useSignInWithPopup, useSignOut} from '../../../package/src/auth';
+import {
+  useUser,
+  useSignInWithPopup,
+  useSignOut,
+} from '../../../package/src/auth';
 
 export default {
-  title: 'auth'
-}
+  title: 'auth',
+};
 
 export const Auth = wrap(() => {
   const [user, {status, error}] = useUser();
@@ -33,4 +36,4 @@ export const Auth = wrap(() => {
       </button>
     </>
   );
-})
+});

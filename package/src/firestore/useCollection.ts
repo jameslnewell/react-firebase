@@ -1,5 +1,4 @@
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
+import * as firebase from 'firebase';
 import {create} from '@jameslnewell/observable';
 import {
   UseObservableStatus,

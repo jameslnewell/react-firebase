@@ -27,6 +27,8 @@ yarn add @jameslnewell/react-firebase
 ```jsx
 import firebase from 'firebase';
 import 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AppProvider} from '@jameslnewell/react-firebase';
@@ -48,8 +50,7 @@ ReactDOM.render(
 
 ```jsx
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase';
 import {useUser, useSignInWithPopup useSignOut} from '@jameslnewell/react-firebase/auth';
 
 export const Navbar = () => {

@@ -9,6 +9,11 @@
       "tests"
     ]
   },
+  "preconstruct": {
+    "packages": [
+      "package"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@jameslnewell/babel-preset": "^2.0.0",
@@ -31,7 +36,7 @@
     "linting": "eslint --ext .ts,.tsx . --fix",
     "typing": "tsc --noEmit --project tsconfig.json",
     "start": "BABEL_ENV=stories yarn workspace stories start",
-    "clean": "",
+    "clean": "echo 'Cleaning...'",
     "build": "preconstruct build",
     "test": "yarn workspace tests test",
     "publish": "yarn run clean && yarn run linting && yarn run typing && yarn run test && yarn run build && cd package && npm publish"
@@ -41,13 +46,5 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "license": "MIT",
-  "preconstruct": {
-    "packages": [
-      "package"
-    ]
-  },
-  "dependencies": {
-    "@jameslnewell/jest-preset-test": "^5.1.0"
-  }
+  "license": "MIT"
 }

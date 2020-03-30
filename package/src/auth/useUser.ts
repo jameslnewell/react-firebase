@@ -1,5 +1,4 @@
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import * as firebase from 'firebase';
 import {create} from '@jameslnewell/observable';
 import {useObservable} from '@jameslnewell/react-observable';
 import {useApp} from '../app';
@@ -13,6 +12,7 @@ export enum UseUserStatus {
 
 export type UseUserUser = firebase.User;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface UseUserMetadata<E = any> {
   status: UseUserStatus;
   error: E | undefined;

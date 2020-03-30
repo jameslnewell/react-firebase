@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 export const app = firebase.initializeApp({
   apiKey: 'AIzaSyB-1LTstPBZpUEsNLPYpXTLHQTAQ9r1pl4', // FIXME Variableise me!
