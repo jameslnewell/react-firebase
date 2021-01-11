@@ -7,15 +7,7 @@
     "jsx": "react",
     "lib": ["esnext", "dom"],
     "module": "esnext",
-    "target": "esnext",
-    "baseUrl": ".",
-    "paths": {
-      "@jameslnewell/react-firebase/app": ["./package/src/app"],
-      "@jameslnewell/react-firebase/auth": ["./package/src/auth"],
-      "@jameslnewell/react-firebase/firestore": ["./package/src/firestore"],
-      "@jameslnewell/react-firebase/storage": ["./package/src/storage"]
-    }
+    "target": "esnext"
   },
-  "include": ["package/src", "package/typings", "stories/src", "tests/src"],
-  "exclude": ["package/src/storage", "stories/src/storage"]
+  "include": ["src"]
 }

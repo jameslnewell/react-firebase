@@ -1,0 +1,4 @@
+{
+  "main": "dist/jameslnewell-react-firebase-auth.cjs.js",
+  "module": "dist/jameslnewell-react-firebase-auth.esm.js"
+}
