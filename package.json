@@ -1,6 +1,6 @@
 {
   "name": "@jameslnewell/react-firebase",
-  "version": "0.7.0-preview.1",
+  "version": "0.10.0-preview.2",
   "description": "🎣 React hooks for working with firebase.",
   "main": "dist/react-firebase.cjs.js",
   "module": "dist/react-firebase.esm.js",
@@ -81,8 +81,8 @@
   },
   "prettier": "@jameslnewell/prettier-config",
   "scripts": {
-    "postinstall": "preconstruct dev",
-    "clean": "rm -rf dist'",
+    "setup": "preconstruct dev",
+    "clean": "rm -rf dist",
     "format": "prettier --write '**/*.{js,json,md,ts,tsx}'",
     "format:check": "prettier --check '**/*.{js,json,md,ts,tsx}'",
     "lint": "eslint --ext .ts,.tsx . --fix",
@@ -92,7 +92,7 @@
     "build:storybook": "build-storybook",
     "build": "yarn run build:preconstruct && yarn run build:storybook",
     "test": "jest",
-    "publish": "yarn run clean && yarn run lint && yarn run type && yarn run test && yarn run build && npm publish"
+    "prepublishOnly": "yarn run clean && yarn run lint && yarn run type && yarn run test && yarn run build"
   },
   "license": "MIT"
 }

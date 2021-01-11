@@ -4,6 +4,7 @@ yarn-error.log
 
 # ignore distributable directories
 /dist/
+/app/dist/
 /auth/dist/
 /firestore/dist/
 /storage/dist/
