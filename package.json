@@ -1,6 +1,6 @@
 {
   "name": "@jameslnewell/react-firebase",
-  "version": "0.10.0-preview.2",
+  "version": "0.10.0-preview.3",
   "description": "🎣 React hooks for working with firebase.",
   "main": "dist/react-firebase.cjs.js",
   "module": "dist/react-firebase.esm.js",
