@@ -11,7 +11,9 @@ export type UseSignInWithPopupMetadata = UseInvokablePromiseMetadata & {
   value: UseSignInWithPopupUser | undefined;
 };
 
-export type UseSignInInvocator = (provider: UseSignInWithPopupProvider) => void;
+export type UseSignInInvocator = (
+  provider: UseSignInWithPopupProvider,
+) => Promise<UseSignInWithPopupUser>;
 export type UseSignInResult = [UseSignInInvocator, UseSignInWithPopupMetadata];
 
 export function useSignInWithPopup(): UseSignInResult {
