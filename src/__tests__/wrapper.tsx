@@ -1,7 +1,7 @@
 import React from 'react';
-import {AppProvider} from '../app';
-import {app} from './firebase';
+import {Provider} from '../app';
+import {app} from './firebase.ts';
 
 export const wrapper: React.FC = ({children}) => (
-  <AppProvider app={app}>{children}</AppProvider>
+  <Provider app={app as any}>{children}</Provider>
 );

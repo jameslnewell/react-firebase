@@ -1,6 +1,10 @@
+.env
 .vscode
 node_modules
 yarn-error.log
+ui-debug.log
+firebase-debug.log
+firestore-debug.log
 
 # ignore distributable directories
 /dist/

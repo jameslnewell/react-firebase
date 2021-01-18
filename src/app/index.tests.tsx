@@ -1,6 +1,6 @@
 import {renderHook} from '@testing-library/react-hooks';
 import {useApp} from '.';
-import {app} from '../__tests__/firebase';
+import {app} from '../__tests__/firebase.ts';
 import {wrapper} from '../__tests__/wrapper';
 
 describe('app', () => {

@@ -9,20 +9,19 @@ import {useApp} from '../app';
 export const UseUpdateDocumentStatus = UseInvokablePromiseStatus;
 export type UseUpdateDocumentStatus = UseInvokablePromiseStatus;
 export type UseUpdateDocumentData = firebase.firestore.DocumentData;
-export type UseUpdateDocumentReference = firebase.firestore.DocumentReference;
 export type UseUpdateDocumentMetadata = UseInvokablePromiseMetadata;
 
-export function useUpdateDocument(
-  collection: string,
-): [
-  (id: string, data: UseUpdateDocumentData) => Promise<void>,
+export type UseUpdateDocumentResult = [
+  (path: string, data: UseUpdateDocumentData) => Promise<void>,
   UseUpdateDocumentMetadata,
-] {
+];
+
+export function useUpdateDocument(): UseUpdateDocumentResult {
   const app = useApp();
   const [invoke, , meta] = useInvokablePromise(
-    (id: string, data: UseUpdateDocumentData) =>
-      app.firestore().collection(collection).doc(id).update(data),
-    [app, collection],
+    (path: string, data: UseUpdateDocumentData) =>
+      app.firestore().doc(path).update(data),
+    [app],
   );
   return [invoke, meta];
 }
