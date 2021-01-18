@@ -10,14 +10,14 @@ export const DocumentExample: React.FC = () => {
   const [idInput] = useInput(id);
   const [nameInput, {clear}] = useInput();
   const [user, {status, error}] = useDocument(`${collection}/${idInput.value}`);
-  const [update] = useUpdateDocument(`${collection}`);
+  const [update] = useUpdateDocument();
 
   const handleSubmitUpdatedUser = (
     event: React.FormEvent<HTMLFormElement>,
   ): void => {
     event.preventDefault();
     clear();
-    update(idInput.value, {name: nameInput.value});
+    update(`${collection}/${idInput.value}`, {name: nameInput.value});
   };
 
   return (

@@ -13,18 +13,18 @@ const collection = 'users';
 
 export const CollectionExample: React.FC = () => {
   const [users, {status, error}] = useCollection(collection);
-  const [createUser] = useAddDocument(collection);
-  const [deleteUser] = useDeleteDocument(collection);
+  const [addUser] = useAddDocument();
+  const [deleteUser] = useDeleteDocument();
   const [input, {clear}] = useInput();
 
   const handleCreateUser = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     clear();
-    createUser({name: input.value});
+    addUser(collection, {name: input.value});
   };
 
   const handleDeleteUser = (id: string): void => {
-    deleteUser(id);
+    deleteUser(`${collection}/${id}`);
   };
 
   return (

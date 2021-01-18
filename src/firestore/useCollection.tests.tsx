@@ -2,7 +2,7 @@
 import {renderHook} from '@testing-library/react-hooks';
 import {UseCollectionStatus, useCollection} from '.';
 import {wrapper} from '../__tests__/wrapper';
-import {app} from '../__tests__/firebase.ts';
+import {app} from '../__tests__/firebase';
 
 describe('useCollection()', () => {
   afterEach(() => {
